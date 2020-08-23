@@ -7,8 +7,11 @@ public class Miner : MonoBehaviour
 {
 
     public GameObject gridGameObject;
-    Rigidbody2D playerRigid;
+    public GameObject tileMapGameObject;
+    
     public Camera cam;
+
+    Rigidbody2D playerRigid;
 
     Tilemap tilemap;
     Grid grid;
@@ -20,27 +23,32 @@ public class Miner : MonoBehaviour
         if (gridGameObject != null)
         {
             grid = gridGameObject.GetComponent<Grid>();
+            tilemap = tileMapGameObject.GetComponent<Tilemap>();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
-        //Vector3Int mp = new Vector3Int((int) Mathf.Floor(mouse.x), (int) Mathf.Floor(mouse.y), (int) Mathf.Ceil(mouse.z));
-        //if (Input.GetButton("Fire1") && tilemap != null)
-        //{
-        //    if(tilemap.GetTile(mp))
-         //   {
-        //        Debug.Log(mp);
-        //        if (tilemap.GetTile(mp).name == "Wal") 
-        //        {
-        //            tilemap.SetTile(tilemap.WorldToCell(mp), null);
-        //        }
-        //    } else
-        //    {
-         //       Debug.Log("No Tile Found at " + mp);
-        //    }
-        //}
+        
+
+        Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int mp = new Vector3Int((int) Mathf.Floor(mouse.x), (int) Mathf.Floor(mouse.y), 0);
+        if (Input.GetButton("Fire1") && tilemap != null)
+        {
+            if(tilemap.GetTile(mp))
+            {
+                //Debug.Log(mp);
+                //Debug.Log(tilemap.GetTile(mp).name);
+                if (tilemap.GetTile(mp).name == "Wal") 
+                {
+                    tilemap.SetTile(tilemap.WorldToCell(mp), null);
+                    //Debug.Log("Setting Tile at " + mp + " To NULL");
+                }
+            } else
+            {
+                Debug.Log("No Tile Found at " + mp);
+            }
+        }
     }
 }
