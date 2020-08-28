@@ -11,6 +11,8 @@ public class Miner : MonoBehaviour
     
     public Camera cam;
 
+    public string[] Mineable;
+
     Rigidbody2D playerRigid;
 
     Tilemap tilemap;
@@ -25,6 +27,11 @@ public class Miner : MonoBehaviour
             grid = gridGameObject.GetComponent<Grid>();
             tilemap = tileMapGameObject.GetComponent<Tilemap>();
         }
+
+        // List of all mineable blocks
+        Mineable = new string[5];
+        Mineable[0] = "Wal";
+        Mineable[1] = "Wall";
     }
 
     // Update is called once per frame

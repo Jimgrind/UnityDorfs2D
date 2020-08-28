@@ -11,7 +11,7 @@ public class TileGenBase : MonoBehaviour
     protected int border;
 
     public GameObject gm_game_object;
-    Grid_Manager gm;
+    private GridManager gm;
     protected Tilemap tilemap;
 
 
@@ -19,16 +19,16 @@ public class TileGenBase : MonoBehaviour
     {
         if(gm_game_object != null)
         {
-            gm = gm_game_object.GetComponent<Grid_Manager>();
+            gm = gm_game_object.GetComponent<GridManager>();
         } else
         {
             Debug.Log("No Grid Manager Found");
         }
-        size = gm.GetSize();
-        border = gm.GetBorder();
-        tilemap = GetComponent<Tilemap>();
+        //size = gm.GetSize();
+        //border = gm.GetBorder();
+        //tilemap = GetComponent<Tilemap>();
         
-        Debug.Log("Size: " + size);
-        Debug.Log("Border " + border);
+        //Debug.Log("Size: " + size);
+        //Debug.Log("Border " + border);
     }
 }
