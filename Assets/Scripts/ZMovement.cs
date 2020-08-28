@@ -35,10 +35,10 @@ public class ZMovement : MonoBehaviour
 
         
 
-        if (obj.gameObject.tag == ("Player") && Input.GetKey(KeyCode.R))
+        if (obj.gameObject.tag == ("Player") && Input.GetKeyDown(KeyCode.R))
         {
             obj.gameObject.transform.Translate(new Vector3(1, 0, 0) * grid.cellSize.x * ((gm.GetSize().x) + gm.GetBorder()));
-        } else if (obj.gameObject.tag == ("Player") && Input.GetKey(KeyCode.F))
+        } else if (obj.gameObject.tag == ("Player") && Input.GetKeyDown(KeyCode.F))
         {
             obj.gameObject.transform.Translate(new Vector3(-1, 0, 0) * grid.cellSize.x * ((gm.GetSize().x) + gm.GetBorder()));
         }
