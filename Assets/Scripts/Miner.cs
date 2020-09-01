@@ -8,10 +8,12 @@ public class Miner : MonoBehaviour
 
     public GameObject gridGameObject;
     public GameObject tileMapGameObject;
+
+    //We will likely want to move this to a list in another object
+    public Tile flooring;
     
     public Camera cam;
-
-    public string[] Mineable;
+    
 
     Rigidbody2D playerRigid;
 
@@ -27,34 +29,33 @@ public class Miner : MonoBehaviour
             grid = gridGameObject.GetComponent<Grid>();
             tilemap = tileMapGameObject.GetComponent<Tilemap>();
         }
-
-        // List of all mineable blocks
-        Mineable = new string[5];
-        Mineable[0] = "Wal";
-        Mineable[1] = "Wall";
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-
         Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mp = new Vector3Int((int) Mathf.Floor(mouse.x), (int) Mathf.Floor(mouse.y), 0);
         if (Input.GetButton("Fire1") && tilemap != null)
         {
-            if(tilemap.GetTile(mp))
-            {
-                //Debug.Log(mp);
-                //Debug.Log(tilemap.GetTile(mp).name);
-                if (tilemap.GetTile(mp).name == "Wal") 
-                {
-                    tilemap.SetTile(tilemap.WorldToCell(mp), null);
-                    //Debug.Log("Setting Tile at " + mp + " To NULL");
-                }
-            } else
-            {
-                Debug.Log("No Tile Found at " + mp);
+            TileBase targ = tilemap.GetTile(mp);
+            //Debug.Log(mp);
+            //Debug.Log(tilemap.GetTile(mp).name);
+            switch (targ.name) {
+                case "Wal":
+                    tilemap.SetTile(tilemap.WorldToCell(mp), flooring);
+                    break;
+                case "Wall":
+                    tilemap.SetTile(tilemap.WorldToCell(mp), flooring);
+                    break;
+
+                case null:
+                    Debug.Log("No Tile Found at " + mp);
+                    break;
+
+                default:
+                    break;
             }
         }
     }
