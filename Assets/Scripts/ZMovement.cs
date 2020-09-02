@@ -13,6 +13,7 @@ public class ZMovement : MonoBehaviour
     private Vector3 offset;
     public bool goesDown;
     //public Grid grid;
+    private int duration;
 
     //public Vector2 direction;
 
@@ -23,7 +24,7 @@ public class ZMovement : MonoBehaviour
 
         //Build the offset vector
         offset = new Vector3(0, goesDown ? gm.Offset * -1 : gm.Offset, 0);
-
+        duration = 0;
 
         //Flip the functions
         if (goesDown) {
@@ -32,14 +33,23 @@ public class ZMovement : MonoBehaviour
         }
     }
 
-
+    // All of this likely needs to be rewritten when multiple entities are using it.
+    //Possibly move the duration tracking to the entities being teleported (player, enemies, etc)
     void OnTriggerStay2D(Collider2D obj)
     {
         Debug.Log("Triggered");
         if (obj.gameObject.tag == ("Player"))
         {
-            obj.gameObject.transform.Translate(obj.gameObject.transform.InverseTransformVector(offset));
+            duration += 1; //This should prevent teleports induced before colliders push the player back
+            if (duration > 2) {
+                obj.gameObject.transform.Translate(obj.gameObject.transform.InverseTransformVector(offset));
+            }
         }
+    }
+    
+    //moving the duration would ping the leaving object, telling it to reset its counter.
+    void OnTriggerLeave2D(Collider2D obj) {
+        duration = 0;
     }
 
     /*

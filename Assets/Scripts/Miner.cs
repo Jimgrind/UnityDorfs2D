@@ -37,7 +37,7 @@ public class Miner : MonoBehaviour
     {
         Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mp = new Vector3Int((int) Mathf.Floor(mouse.x), (int) Mathf.Floor(mouse.y), 0);
-        if (Input.GetButton("Fire1") && tilemap != null)
+        if (Input.GetButtonDown("Fire1") && tilemap != null)
         {
             TileBase targ = tilemap.GetTile(mp);
             //Debug.Log(mp);
