@@ -4,8 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class ZMovement : MonoBehaviour
-{
+public class ZMovement : MonoBehaviour {
 
 
     //public GameObject gm_game_object;
@@ -20,7 +19,8 @@ public class ZMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Grid_Manager temp = gm_game_object.GetComponent<Grid_Manager>();
+        gm = GameObject.Find("EventSystem").GetComponent<GridManager>();
+        
 
         //Build the offset vector
         offset = new Vector3(0, goesDown ? gm.Offset * -1 : gm.Offset, 0);
