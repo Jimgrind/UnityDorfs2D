@@ -133,8 +133,9 @@ GameObject:
   - component: {fileID: 151265800}
   - component: {fileID: 151265799}
   - component: {fileID: 151265802}
+  - component: {fileID: 151265803}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: WorldManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,6 +203,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Offset: 64
   levels: 10
+  map: {fileID: 1544139886}
+  barrier: {fileID: 11400000, guid: c6f7e3b5d75fef64c9f46c56bb6476f5, type: 2}
+--- !u!114 &151265803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151265798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9285da1c7777a942921dcc105bb3aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gm_game_object: {fileID: 0}
 --- !u!1 &211585838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8022833531338311565, guid: 9fb367d11e4813c4e9aae264441f7ada,
@@ -279,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30745c09e73fd4439799b917d5c80b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 30
   cam: {fileID: 519420031}
 --- !u!1001 &422626918
 PrefabInstance:
@@ -892,7 +908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SomeUI Text
+  m_Text: no u
 --- !u!222 &1528442649
 CanvasRenderer:
   m_ObjectHideFlags: 0

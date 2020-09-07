@@ -19,7 +19,7 @@ public class ZMovement : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        gm = GameObject.Find("EventSystem").GetComponent<GridManager>();
+        gm = GameObject.Find("WorldManager").GetComponent<GridManager>();
         
 
         //Build the offset vector
