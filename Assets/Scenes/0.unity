@@ -201,8 +201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbb484c3daff7044a9c2109b2f7dc8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Offset: 64
-  levels: 10
+  layerSize: 32
+  bufferSize: 6
+  numLayers: 10
+  offset: 0
   map: {fileID: 1544139886}
   barrier: {fileID: 11400000, guid: c6f7e3b5d75fef64c9f46c56bb6476f5, type: 2}
 --- !u!114 &151265803
