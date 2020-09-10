@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class WorldGen : TileGenBase
 {
     public Tile wall;
+    public Tile grass;
 
     private void Rect(Tile tile,int x1, int y1, int x2, int y2){
 
@@ -32,6 +33,9 @@ public class WorldGen : TileGenBase
         for(int i = 0;i < gm.numLayers;i++){
           FillLayer(wall,i);
         }
+
+        //Starting Grass Area
+        Rect(grass, gm.bufferSize, gm.bufferSize, offset, (offset + gm.bufferSize) / 2);
     }
 
     // Update is called once per frame
