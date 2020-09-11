@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
 
     public GameObject buildMenu;
+    public GameObject buildMenuView;
     public GameObject inventory;
     bool isBuildMenuActive;
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour
     {
         isBuildMenuActive = false;
         buildMenu.SetActive(isBuildMenuActive);
+        buildMenuView.SetActive(isBuildMenuActive);
     }
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class UIManager : MonoBehaviour
             isBuildMenuActive = !isBuildMenuActive;
             //Debug.Log(isBuildMenuActive);
             buildMenu.SetActive(isBuildMenuActive);
+            buildMenuView.SetActive(isBuildMenuActive);
         }
     }
 }
