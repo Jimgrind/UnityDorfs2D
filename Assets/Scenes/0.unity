@@ -276,7 +276,8 @@ MonoBehaviour:
   stockpile: {fileID: 8192628340939689921, guid: 4a4a8a7eb269cea4595065b74ffdbbf6,
     type: 3}
   stairs: {fileID: 8536752183656593447, guid: 2dab3a47abb5a184dbd81579162a3080, type: 3}
-  inventory: {fileID: 0}
+  slotPrefab: {fileID: 2750491880282233036, guid: 80590212d977bee4ab0a5bc8e2b8fbd7,
+    type: 3}
 --- !u!114 &155410495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,7 +524,8 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 155410492}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7155003221944302890, guid: 5bbe46efe06959a4e8155acacdc522e8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5bbe46efe06959a4e8155acacdc522e8, type: 3}
 --- !u!1 &764208105
 GameObject:
@@ -779,6 +781,7 @@ GameObject:
   - component: {fileID: 1202865532}
   - component: {fileID: 1202865531}
   - component: {fileID: 1202865530}
+  - component: {fileID: 1202865536}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -910,6 +913,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1202865536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202865529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac44bc1a2e65a34695a7c54c21cac62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildMenu: {fileID: 155410492}
+  inventory: {fileID: 1006187608}
 --- !u!1 &1544139883
 GameObject:
   m_ObjectHideFlags: 0
