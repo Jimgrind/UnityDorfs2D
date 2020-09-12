@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class BuildMenuSlot : MonoBehaviour
 {
 
+    GameObject textObject;
     Text textField;
-    SpriteRenderer icon;
+    Font arial;
+    
     RectTransform t;
     string text;
     string pathField;
@@ -15,18 +17,27 @@ public class BuildMenuSlot : MonoBehaviour
 
     public void Init(string text, string title) {
         Debug.Log("Initializing Slot");
-        textField = transform.Find("Text").gameObject.GetComponent<Text>();
-        icon = transform.Find("Icon").gameObject.GetComponent<SpriteRenderer>();
+
+        textObject = new GameObject();
+        textObject.transform.parent = transform;
+        textObject.AddComponent<Text>();
+
         t = GetComponent<RectTransform>();
 
         this.text = text;
         this.pathField = title;
 
-        this.textField.text = text;
-        icon.sprite = Resources.Load<Sprite>("Assets/Buildings/" + pathField);
+        Debug.Log(text);
     }
 
     void Start() {
+        textField = textObject.GetComponent<Text>();
+        t = GetComponent<RectTransform>();
+
+        arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+
+        textField.text = text;
+        textField.font = arial;
         t.localScale = new Vector3(1, 1, 1);
     }
 
