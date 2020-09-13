@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-
+    public GameObject canvas;
     public GameObject buildMenu;
     public GameObject buildMenuView;
-    public GameObject inventory;
+
     bool isBuildMenuActive;
     // Start is called before the first frame update
     void Start()
@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
         isBuildMenuActive = false;
         buildMenu.SetActive(isBuildMenuActive);
         buildMenuView.SetActive(isBuildMenuActive);
+
+        canvas.SetActive(isBuildMenuActive);
+
     }
 
     // Update is called once per frame
@@ -25,6 +28,9 @@ public class UIManager : MonoBehaviour
             //Debug.Log(isBuildMenuActive);
             buildMenu.SetActive(isBuildMenuActive);
             buildMenuView.SetActive(isBuildMenuActive);
+
+            canvas.SetActive(isBuildMenuActive);
+
         }
     }
 }
