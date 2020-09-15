@@ -1,63 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 using UnityEngine.Tilemaps;
-using UnityEngine.EventSystems;
 
-public class Miner : MonoBehaviour
+public class Miner : NetworkBehaviour
 {
 
-    public GameObject gridGameObject;
-    public GameObject tileMapGameObject;
+    public Tile floor;
+    public Tile wall;
 
-    //We will likely want to move this to a list in another object
-    public Tile flooring;
-    
-    public Camera cam;
-    
-
-    Rigidbody2D playerRigid;
-
-    Tilemap tilemap;
-    Grid grid;
-
+    Tilemap tm;
+    Grid g;
+    Camera cam;
+    Vector3Int tile_position;
     // Start is called before the first frame update
     void Start()
     {
-        playerRigid = GetComponent<Rigidbody2D>();
-        if (gridGameObject != null)
-        {
-            grid = gridGameObject.GetComponent<Grid>();
-            tilemap = tileMapGameObject.GetComponent<Tilemap>();
-        }
-        
+        tm = GameObject.Find("Solids").GetComponent<Tilemap>();
+        g = GameObject.Find("Grid").GetComponent<Grid>();
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        tile_position = new Vector3Int();
     }
 
     // Update is called once per frame
+    [Client]
     void Update()
     {
-        Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int mp = new Vector3Int((int) Mathf.Floor(mouse.x), (int) Mathf.Floor(mouse.y), 0);
-        if (Input.GetButtonDown("Fire1") && tilemap != null && !EventSystem.current.IsPointerOverGameObject())
-        {
-            TileBase targ = tilemap.GetTile(mp);
-            //Debug.Log(mp);
-            //Debug.Log(tilemap.GetTile(mp).name);
-            switch (targ.name) {
-                case "Wal":
-                    tilemap.SetTile(tilemap.WorldToCell(mp), flooring);
-                    break;
-                case "Wall":
-                    tilemap.SetTile(tilemap.WorldToCell(mp), flooring);
-                    break;
+        if(!isLocalPlayer) { return; }   
 
-                case null:
-                    Debug.Log("No Tile Found at " + mp);
-                    break;
+        if(g != null && tm != null && Input.GetButtonDown("Fire1")) {
+            Debug.Log("Clicked");
+            tile_position = g.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition));
 
-                default:
-                    break;
+            if(tm.GetTile(tile_position) == wall) {
+                Mine_Cmd(tile_position);
             }
         }
+    }
+
+    [Command]
+    void Mine_Cmd(Vector3Int pos) {
+        //Checks
+        Mine_Rpc(pos);
+    }
+
+    [ClientRpc]
+    void Mine_Rpc(Vector3Int pos) {
+        tm.SetTile(pos, floor);
     }
 }
