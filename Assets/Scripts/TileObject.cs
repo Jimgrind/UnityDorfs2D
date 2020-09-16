@@ -17,7 +17,7 @@ public class TileObject : MonoBehaviour
         x = (int) gameObject.transform.localPosition.x;
         y = (int) gameObject.transform.localPosition.y;
 
-        Handler.add(gameObject);
+        Handler.add(this);
     }
 
     // Update is called once per frame

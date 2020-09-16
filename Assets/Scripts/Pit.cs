@@ -32,22 +32,33 @@ public class Pit : MonoBehaviour
         if (tilemap.GetTile(new Vector3Int(x-1, y, 0)).name == "Pit") {
             walls[0] = false;
             //tell the other pit.walls[2] = false; and update it
-            handler.getObjAt(new Vector2Int(x-1, y));
+            Pit side = handler.getObjAt(x-1, y).GetComponent<Pit>();
+            side.walls[2] = false;
+            side.setWalls();
         }
         //Up
         if (tilemap.GetTile(new Vector3Int(x, y+1, 0)).name == "Pit") {
             walls[1] = false;
             //tell the other pit.walls[3] = false; and update it
+            Pit side = handler.getObjAt(x, y+1).GetComponent<Pit>();
+            side.walls[3] = false;
+            side.setWalls();
         }
         //Right
         if (tilemap.GetTile(new Vector3Int(x+1, y, 0)).name == "Pit") {
             walls[2] = false;
             //tell the other pit.walls[0] = false; and update it
+            Pit side = handler.getObjAt(x+1, y).GetComponent<Pit>();
+            side.walls[0] = false;
+            side.setWalls();
         }
         //Down
         if (tilemap.GetTile(new Vector3Int(x, y-1, 0)).name == "Pit") {
             walls[3] = false;
             //tell the other pit.walls[1] = false; and update it
+            Pit side = handler.getObjAt(x, y-1).GetComponent<Pit>();
+            side.walls[1] = false;
+            side.setWalls();
         }
         setWalls();
 
