@@ -20,10 +20,11 @@ public class ZMovement : MonoBehaviour {
     void Start()
     {
         gm = GameObject.Find("WorldManager").GetComponent<GridManager>();
-        
+
 
         //Build the offset vector
-        offset = new Vector3(0, goesDown ? gm.Offset * -1 : gm.Offset, 0);
+        int gridOffset = gm.layerSize + gm.bufferSize;
+        offset = new Vector3(goesDown ? gridOffset * -1 : gridOffset,0,0);
         duration = 0;
 
         //Flip the functions
@@ -37,16 +38,17 @@ public class ZMovement : MonoBehaviour {
     //Possibly move the duration tracking to the entities being teleported (player, enemies, etc)
     void OnTriggerStay2D(Collider2D obj)
     {
-        Debug.Log("Triggered");
+        Debug.Log("Triggered " + duration + " " + offset);
         if (obj.gameObject.tag == ("Player"))
         {
             duration += 1; //This should prevent teleports induced before colliders push the player back
             if (duration > 2) {
+                Debug.Log("Teleporter Goin' Up!");
                 obj.gameObject.transform.Translate(obj.gameObject.transform.InverseTransformVector(offset));
             }
         }
     }
-    
+
     //moving the duration would ping the leaving object, telling it to reset its counter.
     void OnTriggerLeave2D(Collider2D obj) {
         duration = 0;
@@ -59,7 +61,7 @@ public class ZMovement : MonoBehaviour {
         Vector3 pos = obj.transform.position;
         Vector3 pf = obj.gameObject.transform.position;
 
-        
+
 
         if (obj.gameObject.tag == ("Player") && Input.GetKey(KeyCode.R))
         {
@@ -74,6 +76,6 @@ public class ZMovement : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

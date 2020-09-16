@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.EventSystems;
 
 public class Miner : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class Miner : MonoBehaviour
     {
         Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mp = new Vector3Int((int) Mathf.Floor(mouse.x), (int) Mathf.Floor(mouse.y), 0);
-        if (Input.GetButtonDown("Fire1") && tilemap != null)
+        if (Input.GetButtonDown("Fire1") && tilemap != null && !EventSystem.current.IsPointerOverGameObject())
         {
             TileBase targ = tilemap.GetTile(mp);
             //Debug.Log(mp);
