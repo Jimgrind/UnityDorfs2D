@@ -13,9 +13,8 @@ public class TileObject : MonoBehaviour
     void Start()
     {
         Handler = GameObject.Find("Grid").GetComponent<ObjGrid>();
-        int x, y;
-        x = (int) gameObject.transform.localPosition.x;
-        y = (int) gameObject.transform.localPosition.y;
+        x = (int) gameObject.transform.position.x;
+        y = (int) gameObject.transform.position.y;
 
         Handler.add(this);
     }

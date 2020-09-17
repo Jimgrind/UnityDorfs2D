@@ -36,7 +36,7 @@ public class LinkedList
 
     public void setPrev(LinkedList obj)
     {
-        if (prev == null) Debug.Log("List could encounter error!");
+        // if (prev == null)
         prev = obj;
         obj.next = this;
     }

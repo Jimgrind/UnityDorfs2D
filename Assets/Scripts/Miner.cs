@@ -56,6 +56,7 @@ public class Miner : MonoBehaviour
                     break;
 
                 default:
+                    Debug.Log("Non-Interactable: " + targ.name + mp);
                     break;
             }
         }
