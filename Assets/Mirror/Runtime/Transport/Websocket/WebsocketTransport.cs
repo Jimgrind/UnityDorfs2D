@@ -120,6 +120,7 @@ namespace Mirror.Websocket
 
         public override void ClientConnect(Uri uri)
         {
+
             if (uri.Scheme != Scheme && uri.Scheme != SecureScheme)
                 throw new ArgumentException($"Invalid url {uri}, use {Scheme}://host:port or {SecureScheme}://host:port instead", nameof(uri));
 
@@ -129,6 +130,7 @@ namespace Mirror.Websocket
                 uriBuilder.Port = port;
                 uri = uriBuilder.Uri;
             }
+            Debug.Log("Client Connection Found");
 
             client.Connect(uri);
         }
@@ -139,7 +141,10 @@ namespace Mirror.Websocket
             return true;
         }
 
-        public override void ClientDisconnect() => client.Disconnect();
+        public override void ClientDisconnect() {
+            Debug.Log("Disconnecting Client");
+            client.Disconnect();
+        }
 
         public override Uri ServerUri()
         {
@@ -174,8 +179,10 @@ namespace Mirror.Websocket
         public override bool ServerSend(List<int> connectionIds, int channelId, ArraySegment<byte> segment)
         {
             // send to all
-            foreach (int connectionId in connectionIds)
+            foreach (int connectionId in connectionIds) {
+                Debug.Log("ID: " + connectionId);
                 server.Send(connectionId, segment);
+            }
             return true;
         }
 
@@ -186,6 +193,7 @@ namespace Mirror.Websocket
 
         public override string ServerGetClientAddress(int connectionId)
         {
+            Debug.Log("Client ID: " + connectionId);
             return server.GetClientAddress(connectionId);
         }
         public override void ServerStop() => server.Stop();

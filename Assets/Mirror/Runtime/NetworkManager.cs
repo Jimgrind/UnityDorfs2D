@@ -384,6 +384,7 @@ namespace Mirror
         /// </summary>
         public void StartClient()
         {
+            Debug.Log("CLient Starting");
             mode = NetworkManagerMode.ClientOnly;
 
             InitializeSingleton();
@@ -420,6 +421,7 @@ namespace Mirror
         /// <param name="uri">location of the server to connect to</param>
         public void StartClient(Uri uri)
         {
+            Debug.Log("CLient Starting");
             mode = NetworkManagerMode.ClientOnly;
 
             InitializeSingleton();
@@ -512,6 +514,7 @@ namespace Mirror
         //       host version is enough.
         void FinishStartHost()
         {
+            Debug.Log("Finish Start Host Called");
             // ConnectHost needs to be called BEFORE SpawnObjects:
             // https://github.com/vis2k/Mirror/pull/1249/
             // -> this sets NetworkServer.localConnection.
@@ -548,7 +551,10 @@ namespace Mirror
             // DO NOT do this earlier. it would cause race conditions where a
             // client will do things before the server is even fully started.
             logger.Log("StartHostClient called");
+
             StartHostClient();
+            Debug.Log("Finish Start");
+
         }
 
         void StartHostClient()
@@ -570,6 +576,7 @@ namespace Mirror
             NetworkClient.ConnectLocalServer();
 
             OnStartClient();
+
         }
 
         /// <summary>
@@ -1296,7 +1303,9 @@ namespace Mirror
         /// <para>Unity calls this on the Server when a Client connects to the Server. Use an override to tell the NetworkManager what to do when a client connects to the server.</para>
         /// </summary>
         /// <param name="conn">Connection from client.</param>
-        public virtual void OnServerConnect(NetworkConnection conn) { }
+        public virtual void OnServerConnect(NetworkConnection conn) {
+            Debug.Log("Connection Found");
+        }
 
         /// <summary>
         /// Called on the server when a client disconnects.
@@ -1344,7 +1353,9 @@ namespace Mirror
         /// Obsolete: Removed as a security risk. Use <see cref="NetworkServer.RemovePlayerForConnection(NetworkConnection, bool)">NetworkServer.RemovePlayerForConnection</see> instead.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never), Obsolete("Removed as a security risk. Use NetworkServer.RemovePlayerForConnection(NetworkConnection conn, bool keepAuthority = false) instead", true)]
-        public virtual void OnServerRemovePlayer(NetworkConnection conn, NetworkIdentity player) { }
+        public virtual void OnServerRemovePlayer(NetworkConnection conn, NetworkIdentity player) {
+            Debug.Log("Removing Player");
+        }
 
         /// <summary>
         /// Called on the server when a network error occurs for a client connection.
@@ -1377,6 +1388,7 @@ namespace Mirror
         /// <param name="conn">Connection to the server.</param>
         public virtual void OnClientConnect(NetworkConnection conn)
         {
+            Debug.Log("A Client is Here");
             // OnClientConnect by default calls AddPlayer but it should not do
             // that when we have online/offline scenes. so we need the
             // clientLoadedScene flag to prevent it.
@@ -1387,7 +1399,11 @@ namespace Mirror
                 if (autoCreatePlayer)
                 {
                     ClientScene.AddPlayer(conn);
+                } else {
+                    Debug.Log("Unable to Add Player");
                 }
+            } else {
+                Debug.Log("Client Already Connected");
             }
         }
 
@@ -1406,7 +1422,9 @@ namespace Mirror
         /// </summary>
         /// <param name="conn">Connection to a server.</param>
         /// <param name="errorCode">Error code.</param>
-        public virtual void OnClientError(NetworkConnection conn, int errorCode) { }
+        public virtual void OnClientError(NetworkConnection conn, int errorCode) {
+            Debug.Log("Error Connecting" + errorCode);
+        }
 
         /// <summary>
         /// Called on clients when a servers tells the client it is no longer ready.
@@ -1475,7 +1493,9 @@ namespace Mirror
         /// <summary>
         /// This is invoked when the client is started.
         /// </summary>
-        public virtual void OnStartClient() { }
+        public virtual void OnStartClient() {
+            Debug.Log("OnStartClient");
+        }
 
         /// <summary>
         /// This is called when a server is stopped - including when a host is stopped.

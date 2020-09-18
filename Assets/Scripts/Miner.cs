@@ -42,7 +42,9 @@ public class Miner : NetworkBehaviour
     [Command]
     void Mine_Cmd(Vector3Int pos) {
         //Checks
-        Mine_Rpc(pos);
+        if (((transform.position - new Vector3(0.5f, 0.5f, 0)) - (Vector3)pos).sqrMagnitude < 6) {
+            Mine_Rpc(pos);
+        }
     }
 
     [ClientRpc]
