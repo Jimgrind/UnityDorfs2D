@@ -7,6 +7,8 @@ public class TileObject : MonoBehaviour
     public int x;
     public int y;
 
+    public LinkedList listSpot;
+
     public ObjGrid Handler;
 
     // Start is called before the first frame update
@@ -17,6 +19,10 @@ public class TileObject : MonoBehaviour
         y = (int) gameObject.transform.position.y;
 
         Handler.add(this);
+    }
+
+    void OnDestroy() {
+        listSpot.remove();
     }
 
     // Update is called once per frame

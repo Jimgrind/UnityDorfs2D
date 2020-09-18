@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemStack : MonoBehaviour
 {
 
-    public string name;
+    public string title;
     public int amount;
     public ItemType type;
 

@@ -42,7 +42,7 @@ public class Pit : MonoBehaviour
     
     void Start()
     {
-
+        effectors = new MonoBehaviour[8];
 
 
         mask = gameObject.GetComponentInChildren<SpriteMask>().gameObject.transform;

@@ -15,6 +15,7 @@ public class LinkedList
     public LinkedList(TileObject obj)
     {
         data = obj;
+        obj.listSpot = this;
     }
 
     //Call this remove function when an object is removed by other means. 
