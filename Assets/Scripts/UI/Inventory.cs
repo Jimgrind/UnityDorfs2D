@@ -41,11 +41,11 @@ public class Inventory : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (piles != null) {
+        /*if (piles != null) {
             foreach (StockPile pile in piles) {
                 Debug.Log(pile.title);
             }
-        }
+        }*/
     }
 
 }

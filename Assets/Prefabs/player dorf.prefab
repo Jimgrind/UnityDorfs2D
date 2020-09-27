@@ -37,6 +37,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!114 &-5302674307611150644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376704839723413494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f730cb656ad02a45b9f3eaefe306512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complex: {fileID: 11400000, guid: 6c1c6155d6fd9364eaf5f0780867d80c, type: 2}
+  builder: {fileID: 5868073627946386637, guid: 7ee1f7c454f705f4fa1a674e41e10abe, type: 3}
 --- !u!114 &211585840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
---- !u!114 &-5302674307611150644
+--- !u!114 &6901930703148449787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,9 +103,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2376704839723413494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f730cb656ad02a45b9f3eaefe306512, type: 3}
+  m_Script: {fileID: 11500000, guid: 3afdb1348bf2cac4a9000638732b6e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bestOption: {fileID: 0}
 --- !u!1001 &5741268063482357883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102,12 +117,12 @@ PrefabInstance:
     - target: {fileID: 8022833531338311564, guid: 9fb367d11e4813c4e9aae264441f7ada,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.35
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8022833531338311564, guid: 9fb367d11e4813c4e9aae264441f7ada,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.76
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8022833531338311564, guid: 9fb367d11e4813c4e9aae264441f7ada,
         type: 3}
