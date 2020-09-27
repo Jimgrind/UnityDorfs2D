@@ -31,8 +31,6 @@ public class Inventory : MonoBehaviour {
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        Debug.Log("Something Happened");
-
         if (other.gameObject.tag == "stockpile") {
             Debug.Log("Player Left");
             RemoveStockPile(other.gameObject.GetComponent<StockPile>());

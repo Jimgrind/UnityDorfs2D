@@ -6,21 +6,28 @@ using UnityEngine.EventSystems;
 // Handles the visuals and duration portion of building, upgrading, or destroying.
 public class BuildBar : MonoBehaviour
 {
-
-    public string title;
     public GameObject target; // build target
-    public GameObject builder; // the one making it
+    public GameObject builder; // the player making it
     public int duration; // target time
-    private int distance; // maximum distance you can build from
+    private double distance; // maximum distance you can build from
     private int time; // current build time
 
-    public void connect(string name, GameObject b, GameObject t, int T, int dist = 4) {
-        title = name;
+    // Used for game object interactions
+    public void connect(GameObject b, GameObject t, int T, double dist = 3) {
         target = t;
         duration = T;
         builder = b;
         distance = dist;
         Debug.Log("Construction Begins.");
+    }
+
+    // Used for mining, or non-object stuff (ores, walls, etc)
+    public void connect(GameObject b, string title, int T, double dist = 3) {
+        builder = b;
+        gameObject.name = title;
+        duration = T;
+        distance = dist;
+        target = this.gameObject;
     }
 
     // Start is called before the first frame update
@@ -48,7 +55,11 @@ public class BuildBar : MonoBehaviour
         if (time >= duration) {
             //Send the build message
             Debug.Log("Construction Complete.");
-            builder.GetComponent<Build>().finish(title);
+            if (target == this.gameObject) {
+                builder.GetComponent<Miner>().finish(gameObject.name, target.transform.position);
+            } else {
+                builder.GetComponent<Miner>().finish(target);
+            }
             Destroy(gameObject);
         }
         ++time;

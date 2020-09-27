@@ -37,20 +37,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &-5302674307611150644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2376704839723413494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f730cb656ad02a45b9f3eaefe306512, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  complex: {fileID: 11400000, guid: 6c1c6155d6fd9364eaf5f0780867d80c, type: 2}
-  builder: {fileID: 5868073627946386637, guid: 7ee1f7c454f705f4fa1a674e41e10abe, type: 3}
 --- !u!114 &211585840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +52,11 @@ MonoBehaviour:
   gridGameObject: {fileID: 0}
   tileMapGameObject: {fileID: 0}
   flooring: {fileID: 11400000, guid: 5588226cd9359ce459d77542c7dfb06f, type: 2}
+  complex: {fileID: 11400000, guid: 6c1c6155d6fd9364eaf5f0780867d80c, type: 2}
+  pit: {fileID: 11400000, guid: b2e0c1646cf9e3440b4e46a64e90ce14, type: 2}
+  pitCover: {fileID: 7705699259682185521, guid: 5a7826704c3a9cb4b941c7b4e2158ea5,
+    type: 3}
+  builder: {fileID: 5868073627946386637, guid: 7ee1f7c454f705f4fa1a674e41e10abe, type: 3}
   cam: {fileID: 0}
 --- !u!114 &211585843
 MonoBehaviour:

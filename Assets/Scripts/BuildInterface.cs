@@ -22,17 +22,19 @@ public class BuildInterface : MonoBehaviour, Processor {
     // Update is called once per frame
     void Update() {
         if (bestOption != null && Input.GetButtonDown("ContextUse")) {
-            gameObject.GetComponent<Build>().process(bestOption.name);
+            gameObject.GetComponent<Miner>().process(bestOption);
         }
     }
 
     public void process(string built) {
         // Determine location
-        gameObject.GetComponent<Build>().process(built);
+        // do your build outline stuff
+        // gameObject.GetComponent<Miner>().process(built);
+        Debug.Log("This is on you to do");
     }
 
     public void finish(string built) {
-        gameObject.GetComponent<Build>().finish(built);
+        gameObject.GetComponent<Miner>().finish(null);
     }
 
     void OnTriggerEnter2D(Collider2D other) {

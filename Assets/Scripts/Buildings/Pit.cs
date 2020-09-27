@@ -7,12 +7,16 @@ using UnityEngine.Tilemaps;
 public class Pit : MonoBehaviour
 {
     protected bool[] walls; // 4 walls, clockwise from left
-    private MonoBehaviour[] effectors; // 4 colliders, and 4 effectors.
+    private GameObject[] effectors; // 4 collider effector pairs
     public bool spikes;
     Tilemap tilemap;
     ObjGrid handler; //This may end up inefficient and is possible to just replace throughougt code
     private Transform mask;
 
+    public void setSpikes() {
+        spikes = true;
+        // set visuals
+    }
 
     protected void setWalls() {
         //use the walls variable to build the image
@@ -21,16 +25,20 @@ public class Pit : MonoBehaviour
         
         if (walls[0]) {
             px += 0.0625; sx -= 0.125;
-        }
+            effectors[0].SetActive(true);
+        } else effectors[0].SetActive(false);
         if (walls[1]) {
             py -= 0.0625; sy -= 0.125;
-        }
+            effectors[1].SetActive(true);
+        } else effectors[1].SetActive(false);
         if (walls[2]) {
             px -= 0.0625; sx -= 0.125;
-        }
+            effectors[2].SetActive(true);
+        } else effectors[2].SetActive(false);
         if (walls[3]) {
             py += 0.0625; sy -= 0.125;
-        }
+            effectors[3].SetActive(true);
+        } else effectors[3].SetActive(false);
 
         Debug.Log("Pit refreshed with walls: " + walls[0] + "" + walls[1] + "" + walls[2] + "" + walls[3]);
         Debug.Log("old mask Pos: " + mask.localPosition.ToString() + " size: " + mask.lossyScale.ToString());
@@ -42,8 +50,12 @@ public class Pit : MonoBehaviour
     
     void Start()
     {
-        effectors = new MonoBehaviour[8];
-
+        gameObject.name = "pitCover";
+        effectors = new GameObject[4];
+        EdgeCollider2D[] temp = gameObject.GetComponentsInChildren<EdgeCollider2D>(true);
+        for (int i = 0; i<4; ++i) {
+            effectors[i] = temp[i].gameObject;
+        }
 
         mask = gameObject.GetComponentInChildren<SpriteMask>().gameObject.transform;
         tilemap = GameObject.Find("Solids").GetComponent<Tilemap>();
